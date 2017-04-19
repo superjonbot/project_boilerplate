@@ -1,3 +1,5 @@
+# This script builds the project, The folder name is the project Name  -JR
+
 clear
 thisPath=$(pwd)
 projectPath=$(awk -F/ '{print $(NF-1)"/"$NF}' <<< $thisPath)

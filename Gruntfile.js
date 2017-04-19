@@ -2,8 +2,8 @@ module.exports = function (grunt) {
 
     // USER DEFINED VARIABLES *start*
 
-    var projectType = 'web'; //web,chromecast,appletv   <-determines default config
-    var localserver = 'http://local-scotchbox.com/chrysalis_dev/projects/';
+    var projectType = 'web'; //web, chromecast, or appletv   <-determines default config
+    var localserver = 'http://local-scotchbox.com/chrysalis_dev/projects/';//   <-your local server path
     var thirdPartyLibraries=[ 'requireLib']//,'jquery', ];
     var requirePATHS = {
         almondLib: 'js_src/libraries/require/almond/almond',
@@ -28,7 +28,6 @@ module.exports = function (grunt) {
 
 
     // LEAVE EVERYTHING BELOW ALONE! -JR
-
     var myTaskList = [];
     var basePath= grunt.option('basePath');
     var projectPath= grunt.option('projectPath');
