@@ -1,0 +1,30 @@
+clear
+thisPath=$(pwd)
+projectPath=$(awk -F/ '{print $(NF-1)"/"$NF}' <<< $thisPath)
+removeChar=${#projectPath}+1
+basePath=${thisPath:0:${#thisPath}-removeChar}
+
+#if the above fails, comment out and manually set:
+#projectPath="projects/(projectname)"
+#basePath="/Users/(user)/Sites/(project directory)"
+
+DATE=$(date +"%m-%d-%y")
+TIME=$(date +"%r")
+cachebuster=$(date +"%s")
+
+cd $basePath
+cp -rf $basePath/$projectPath/Gruntfile.js $basePath/Gruntfile.js
+grunt --basePath=$basePath --projectPath=$projectPath --DATE=$DATE --TIME="$TIME" --cachebuster=$cachebuster --gruntfile $basePath/Gruntfile.js
+rm -rf $basePath/Gruntfile.js
+echo "created file set unique ID: $cachebuster on $DATE at $TIME"
+
+read -p "Generic Commit to master? " -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    printf "cd $thisPath\n"
+    cd $thisPath && git add . && git commit -m "auto commit date:$DATE time:$TIME version:$cachebuster" && git push origin master
+else
+    echo "still have commitment issues?"
+fi
+git status
