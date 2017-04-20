@@ -2,7 +2,7 @@ module.exports = function (grunt) {
 
     // USER DEFINED VARIABLES *start*
 
-    var projectType = 'web'; //web, chromecast, or appletv   <-determines default config
+    var projectType = 'web_041917'; //web, chromecast, or appletv   <-determines /baselib/required & css_src/global files
     var localserver = 'http://local-scotchbox.com/chrysalis_dev/projects/';//   <-your local server path
     var thirdPartyLibraries=[ 'requireLib']//,'jquery', ];
     var requirePATHS = {

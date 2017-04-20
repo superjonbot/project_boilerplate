@@ -19,14 +19,18 @@ cp -rf $basePath/$projectPath/Gruntfile.js $basePath/Gruntfile.js
 grunt --basePath=$basePath --projectPath=$projectPath --DATE=$DATE --TIME="$TIME" --cachebuster=$cachebuster --gruntfile $basePath/Gruntfile.js
 rm -rf $basePath/Gruntfile.js
 echo "created file set unique ID: $cachebuster on $DATE at $TIME"
+printf "\n>>>cd $thisPath\n"
+cd $thisPath
+git status
+
+osascript -e 'tell application "Google Chrome" to tell the active tab of its first window to reload'
 
 read -p "Generic Commit to master? " -n 1 -r
-echo    # (optional) move to a new line
+# (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    printf "cd $thisPath\n"
+
     cd $thisPath && git add . && git commit -m "auto commit date:$DATE time:$TIME version:$cachebuster" && git push origin master
 else
     echo "still have commitment issues?"
 fi
-git status
